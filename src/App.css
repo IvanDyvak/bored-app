@@ -1,4 +1,16 @@
-.App-header{
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
+.App{
+    font-family: 'Open Sans', sans-serif;
+}
+.header-wrap{
+    display: block;
+    position: relative;
+    width: 100%;
+    box-shadow: -1px 3px 8px 0px #ccc;
+    transform: translateY(-13px);
+}
+.header,
+.container{
     width: 100%;
     max-width: 1150px;
     margin: 15px auto;
@@ -6,12 +18,54 @@
 .logo-img{
     max-width: 250px;
 }
+.description h4{
+    color: #046d8b;
+}
 form{
     width: 100%;
     max-width: 500px;
     margin: 0 auto;
     text-align: center;
 }
-.offer p{
+form label{
+    font-size: 18px;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+}
+form select{
+    width: 50px;
+    padding: 5px;
+}
+.description h4,
+.offer p,
+.offer h2{
     text-align: center;
+}
+.init-btn{
+    display: block;
+    margin: 20px auto;
+    width: 200px;
+    padding: 17px 0;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    border: none;
+    background-color: rgba(0,0,0,1.000);
+    background-position: left;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all .3s;
+    text-transform: uppercase;
+}
+.init-btn:hover{
+    outline: 5px solid hsl(0, 0%, 60%);
+    box-shadow:
+            0 0 0 10px hsl(0, 0%, 80%),
+            0 0 0 15px hsl(0, 0%, 90%);
+}
+.loading{
+    background: lightgray;
 }
