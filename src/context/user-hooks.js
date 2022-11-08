@@ -20,6 +20,7 @@ export const AppProvider = ({ children }) => {
                 if (code !== '200' && message) throw Error(message);
                 setError(null);
                 setActivities(res);
+                console.log(activities);
             })
             .catch(setError)
             .finally(() => setDataLoading(false));

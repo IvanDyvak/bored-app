@@ -11,6 +11,7 @@ function App() {
         handleSubmit,
         activities,
     } = useAppData();
+    const {activity, type, price} = activities;
 
 
     return (
@@ -43,11 +44,11 @@ function App() {
                     <input style={{ backgroundImage: `url("images/btn-bg.jpg")` }} type="submit" value={`${isDataLoading ? 'Loading...' : 'Check Now'}`} className={`${isDataLoading ? 'init-btn loading' : 'init-btn'}`} />
                 }
             </form>
-            { activities &&
+            { Object.keys(activities).length !== 0 &&
                 <div className="offer">
-                    <h2 className="activity">{activities.activity}</h2>
-                    <p className="type">Type of activity: {activities.type}</p>
-                    <p className="price">Price: {activities.price}$</p>
+                    <h2 className="activity">{activity}</h2>
+                    <p className="type">Type of activity: {type}</p>
+                    <p className="price">Price: {price}$</p>
                 </div>
             }
         </div>
