@@ -8,26 +8,31 @@ export const useAppData = () => useContext(AppContext);
 export const AppProvider = ({ children }) => {
     const [ error, setError ] = useState(null);
     const [ isDataLoading, setDataLoading ] = useState(false);
-    const [ data, setData ] = useState([]);
     const [ selected, setSelected ] = useState(0);
+    const [ query, setQuery ] = useState(``);
+    const [ activities, setActivities ] = useState({});
 
+    const handleSubmit = () => {
+        setDataLoading(true);
+        getData(query)
+            .then(res => {
+                const { message, code } = res;
+                if (code !== '200' && message) throw Error(message);
+                setError(null);
+                setActivities(res);
+            })
+            .catch(setError)
+            .finally(() => setDataLoading(false));
+    }
 
     const handleChange = (e) => {
         setSelected(Number(e.target.value));
     }
 
-   const handleSubmit = () => {
-       setDataLoading(true);
-       getData(`https://www.boredapi.com/api/activity?participants=${selected}`)
-           .then(res => {
-               const { message, code } = res;
-               if (code !== '200' && message) throw Error(message);
-               setError(null);
-               setData(res);
-           })
-           .catch(setError)
-           .finally(() => setDataLoading(false));
-   }
+    useEffect(() => {
+        selected !== 0 ? setQuery(`https://www.boredapi.com/api/activity?participants=${selected}`) :
+            setQuery(``);
+    }, [selected]);
 
   return (
     <AppContext.Provider
@@ -35,11 +40,14 @@ export const AppProvider = ({ children }) => {
           isDataLoading,
           setDataLoading,
           error,
-          data,
           selected,
           setSelected,
           handleChange,
-          handleSubmit
+          handleSubmit,
+          query,
+          setQuery,
+          activities,
+          setActivities
     }}
     >
       {children}

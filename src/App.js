@@ -1,28 +1,17 @@
-import React, { useState, useEffect} from "react";
+import React from "react";
 import './App.css';
 import {useAppData} from "./context/user-hooks";
 
 function App() {
 
     const {
-        data,
         isDataLoading,
         selected,
-        setSelected,
         handleChange,
         handleSubmit,
+        activities,
     } = useAppData();
 
-
-    useEffect(() => {
-        handleSubmit();
-    }, [setSelected]);
-
-    const {activity, type, price} = data;
-
-    //
-    // if (!data.length) return <div style={{textAlign: "center", marginTop: "50px", fontWeight: "600"}}>Sorry, there's no
-    //     info</div>
 
     return (
     <div className="App">
@@ -37,30 +26,30 @@ function App() {
             </div>
             <form
                 onSubmit={(e) => {handleSubmit(); e.preventDefault();}}>
-                <label htmlFor="participants">Select a number of participants: </label>
+                <label htmlFor="participants">Number of participants: </label>
                 <select  id="participants"
                          name="participants"
                          defaultValue={selected}
                          onChange={handleChange}>
-                    <option value="0">0</option>
+                    <option value="0">Select</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                <input style={{ backgroundImage: `url("images/btn-bg.jpg")` }} type="submit" value={`${isDataLoading ? 'Loading...' : 'Check Now'}`} className={`${isDataLoading ? 'init-btn loading' : 'init-btn'}`} />
-            </form>
-            <div className="offer">
                 { selected === 0 ?
-                    null :
-                    <>
-                        <h2 className="activity">{activity}</h2>
-                        <p className="type">Type of activity: {type}</p>
-                        <p className="price">Price: {price}$</p>
-                    </>
+                    <input  type="submit" value="Check Now" className="init-btn disabled" /> :
+                    <input style={{ backgroundImage: `url("images/btn-bg.jpg")` }} type="submit" value={`${isDataLoading ? 'Loading...' : 'Check Now'}`} className={`${isDataLoading ? 'init-btn loading' : 'init-btn'}`} />
                 }
-            </div>
+            </form>
+            { activities &&
+                <div className="offer">
+                    <h2 className="activity">{activities.activity}</h2>
+                    <p className="type">Type of activity: {activities.type}</p>
+                    <p className="price">Price: {activities.price}$</p>
+                </div>
+            }
         </div>
     </div>
   );
