@@ -6,3 +6,12 @@
 .logo-img{
     max-width: 250px;
 }
+form{
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+.offer p{
+    text-align: center;
+}
