@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;800&display=swap');
+body{
+    background-image: linear-gradient(to right, #fdfcfb, #e2d1c3);
+}
 .App{
     font-family: 'Open Sans', sans-serif;
 }
@@ -43,7 +46,7 @@ form select{
     max-width: 500px;
     margin: 40px auto;
     padding: 5px 10px;
-    box-shadow: 0px 0px 15px 0 #ccc;
+    box-shadow: 0 0.5em 2em 0 rgb(27 41 42 / 50%);
     border-radius: 6px;
 }
 .description h4,

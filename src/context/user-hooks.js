@@ -8,8 +8,8 @@ export const useAppData = () => useContext(AppContext);
 export const AppProvider = ({ children }) => {
     const [ error, setError ] = useState(null);
     const [ isDataLoading, setDataLoading ] = useState(false);
-    const [ selected, setSelected ] = useState(0);
-    const [ query, setQuery ] = useState(``);
+    const [ selected, setSelected ] = useState('any');
+    const [ query, setQuery ] = useState(`https://www.boredapi.com/api/activity`);
     const [ activities, setActivities ] = useState({});
 
     const handleSubmit = () => {
@@ -20,19 +20,18 @@ export const AppProvider = ({ children }) => {
                 if (code !== '200' && message) throw Error(message);
                 setError(null);
                 setActivities(res);
-                console.log(activities);
             })
             .catch(setError)
             .finally(() => setDataLoading(false));
     }
 
     const handleChange = (e) => {
-        setSelected(Number(e.target.value));
+        setSelected(e.target.value);
     }
 
     useEffect(() => {
-        selected !== 0 ? setQuery(`https://www.boredapi.com/api/activity?participants=${selected}`) :
-            setQuery(``);
+        selected !== "any" ? setQuery(`https://www.boredapi.com/api/activity?participants=${selected}`) :
+            setQuery(`https://www.boredapi.com/api/activity`);
     }, [selected]);
 
   return (

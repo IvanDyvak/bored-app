@@ -32,23 +32,24 @@ function App() {
                          name="participants"
                          defaultValue={selected}
                          onChange={handleChange}>
-                    <option value="0">Select</option>
+                    <option value="any">Any</option>
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5</option>
                 </select>
-                { selected === 0 ?
-                    <input  type="submit" value="Check Now" className="init-btn disabled" /> :
                     <input style={{ backgroundImage: `url("images/btn-bg.jpg")` }} type="submit" value={`${isDataLoading ? 'Loading...' : 'Check Now'}`} className={`${isDataLoading ? 'init-btn loading' : 'init-btn'}`} />
-                }
+                {/*{ selected === 0 ?*/}
+                {/*    <input  type="submit" value="Check Now" className="init-btn disabled" /> :*/}
+                {/*    <input style={{ backgroundImage: `url("images/btn-bg.jpg")` }} type="submit" value={`${isDataLoading ? 'Loading...' : 'Check Now'}`} className={`${isDataLoading ? 'init-btn loading' : 'init-btn'}`} />*/}
+                {/*}*/}
             </form>
             { Object.keys(activities).length !== 0 &&
                 <div className="offer">
                     <h2 className="activity">{activity}</h2>
-                    <p className="type">Type of activity: {type}</p>
-                    <p className="price">Price: {price}$</p>
+                    <p className="type"><b>Type of activity:</b> {type}</p>
+                    <p className="price"><b>Price:</b> {price}$</p>
                 </div>
             }
         </div>
